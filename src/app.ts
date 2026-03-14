@@ -8,7 +8,10 @@ import productRouter from "./routes/product.route.ts"
 const app: Application = express();
 
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:5173", 
+    credentials: true,               
+}));
 app.use(cookieParser());
 app.use(express.json());
 

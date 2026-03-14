@@ -3,8 +3,8 @@ import User from "../models/user.model.ts";
 import type { IUser } from "../models/user.model.ts";
 export const register = async (userData: IUser) => {
 	const email = userData.email;
-	const user = await User.findOne({ email });
-	if (user) throw new Error("user already exists");
+	const userExists = await User.exists({ email });
+	if (userExists) throw new Error("user already exists");
 
 	const salt = await bcrypt.genSalt(12);
 	const hashedPassword = await bcrypt.hash(userData.password, salt);
