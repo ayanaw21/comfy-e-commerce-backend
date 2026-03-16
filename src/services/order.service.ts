@@ -6,7 +6,7 @@ export const getAllOrders = async (query: any, userId: string) => {
 	const skip = (page - 1) * limit;
 	const filter: any = {};
 	if (userId) filter.user = userId;
-	const orders = Order.findOne(filter)
+	const orders = await Order.find(filter)
 		.sort({ createdAt: -1 })
 		.skip(skip)
 		.limit(limit)

@@ -5,6 +5,6 @@ import { protect } from "../middlewares/auth.middleware.js";
 const router = Router();
 
 router.get("/", protect, OrderController.getOrders);
-router.post("/create", protect, OrderController.createOrder);
+router.post("/", protect, OrderController.createOrder);
 
 export default router;

@@ -1,4 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
+import { isNumberObject } from "node:util/types";
 
 export interface IOrderItem {
 	product: mongoose.Types.ObjectId;
@@ -35,22 +36,24 @@ const orderSchema = new Schema(
 				product: {
 					type: mongoose.Schema.Types.ObjectId,
 					ref: "Product",
-					required: true,
+					
 				},
 				image: { type: String, required: true },
 				title: { type: String, required: true },
 				amount: { type: Number, required: true },
-				price: { type: String, required: true },
-				color: { type: String, required: true },
+				price: { type: Number, required: true },
+				productColor: { type: String, required: true },
 				cartId: { type: String, required: true },
+                company:{type:String,required:true}
 			},
 		],
 		numItemsInCart: { type: Number, required: true },
 		cartTotal: { type: Number, required: true },
-		// shipping:{type:Number,default:500},
-		tax: { type: Number, required: true },
+		shipping:{type:Number,default:500},
+		tax: { type: Number ,required:true},
 		orderTotal: { type: Number, required: true },
 		address: { type: String, required: true },
+        // name:{type:String,required:true}
 	},
 	{ timestamps: true },
 );

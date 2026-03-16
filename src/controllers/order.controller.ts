@@ -32,7 +32,9 @@ export const createOrder = async (req: any, res: Response) => {
 			numItemsInCart,
 			cartTotal,
 			tax,
+            shipping,
 			orderTotal,
+            cartId,
 			address,
 		} = req.body;
 		if (!orderItems || orderItems.length === 0) {
@@ -46,10 +48,13 @@ export const createOrder = async (req: any, res: Response) => {
 			orderItems,
 			numItemsInCart,
 			cartTotal,
-			tax,
+			cartId,
+            tax,
+            shipping,
 			orderTotal,
 			address,
-			status: "pending",
+            
+			// status: "pending",
 		};
 		const order = await orderService.createOrder(orderData);
 		return res.status(httpStatus.CREATED).json({
