@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
     // File Layout
-    "rootDir": "./src",
     "outDir": "./dist",
+    "rootDir": "./src",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "NodeNext",
+    "moduleResolution": "NodeNext", // 👈 Required for .js imports
     "target": "esnext",
     "types": [],
     // For nodejs:
@@ -40,7 +41,9 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "emitDeclarationOnly": true,
-    "allowImportingTsExtensions":true,
-  }
+    "emitDeclarationOnly": false, 
+    "noEmit": false,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

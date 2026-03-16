@@ -1,4 +1,4 @@
-import Order, { type IOrder } from "../models/order.model.ts";
+import Order, { type IOrder } from "../models/order.model.js";
 
 export const getAllOrders = async (query: any, userId: string) => {
 	const page = Number(query.page) || 1;
@@ -10,7 +10,7 @@ export const getAllOrders = async (query: any, userId: string) => {
 		.sort({ createdAt: -1 })
 		.skip(skip)
 		.limit(limit)
-        .lean();
+		.lean();
 	const totalOrders = await Order.countDocuments(filter);
 
 	return {

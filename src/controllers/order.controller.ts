@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import * as orderService from "../services/order.service.ts";
+import * as orderService from "../services/order.service.js";
 import httpStatus from "http-status";
 export const getOrders = async (req: any, res: Response) => {
 	try {
@@ -19,7 +19,9 @@ export const getOrders = async (req: any, res: Response) => {
 		});
 	} catch (error: any) {
 		console.error("Get Orders Error:", error.message);
-		return res.status(500).json({ message: error.message || "Internal Server Error" });
+		return res
+			.status(500)
+			.json({ message: error.message || "Internal Server Error" });
 	}
 };
 

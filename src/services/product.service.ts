@@ -1,4 +1,4 @@
-import Product, { type IProduct } from "../models/product.model.ts";
+import Product, { type IProduct } from "../models/product.model.js";
 
 export const getProducts = async (filters: any) => {
 	const {
@@ -58,30 +58,31 @@ export const getProducts = async (filters: any) => {
 		.limit(Number(limit));
 
 	const totalProducts = await Product.countDocuments(queryObject);
-	const uniqueCategories = await Product.distinct('category')
-	const uniqueCompanies = await Product.distinct('company')
+	const uniqueCategories = await Product.distinct("category");
+	const uniqueCompanies = await Product.distinct("company");
 	return {
 		products,
 		totalProducts,
 		totalPages: Math.ceil(totalProducts / Number(limit)),
 		currentPage: Number(page),
-		categories: ['all', ...uniqueCategories],
-        companies: ['all', ...uniqueCompanies],
+		categories: ["all", ...uniqueCategories],
+		companies: ["all", ...uniqueCompanies],
 	};
 };
 
-export const getProductById = async(id:string)=>{
-	const product = await Product.findById(id)
+export const getProductById = async (id: string) => {
+	const product = await Product.findById(id);
 	return product;
-}
+};
 
-export const createProduct = async (productData:Partial<IProduct>| Partial<IProduct[]>)=>{
+export const createProduct = async (
+	productData: Partial<IProduct> | Partial<IProduct[]>,
+) => {
 	// const product = new Product(productData);
-    // await product.save();
+	// await product.save();
 	const products = await Product.insertMany(
-        Array.isArray(productData) ? productData : [productData]
-    );
-    return products;
-    // return product;
-}
-
+		Array.isArray(productData) ? productData : [productData],
+	);
+	return products;
+	// return product;
+};

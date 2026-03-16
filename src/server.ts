@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
-import app from './app.ts';
-import dotenv from 'dotenv';
-import http from "http"
-import { connectDB } from './configs/db.ts';
-import { ENV } from './configs/env.ts';
+import mongoose from "mongoose";
+import app from "./app.js";
+import dotenv from "dotenv";
+import http from "http";
+import { connectDB } from "./configs/db.js";
+import { ENV } from "./configs/env.js";
 dotenv.config();
 
 const PORT = ENV.PORT || 5000;

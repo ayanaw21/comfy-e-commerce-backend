@@ -1,7 +1,7 @@
-import User from "../models/user.model.ts";
+import User from "../models/user.model.js";
 
-export const getCurrentUser = async(userId:string)=>{
-    const user = await User.findById(userId).select("-password")
-    if(!user) throw new Error("user not found")
-    return user;
-}
+export const getCurrentUser = async (userId: string) => {
+	const user = await User.findById(userId).select("-password");
+	if (!user) throw new Error("user not found");
+	return user;
+};

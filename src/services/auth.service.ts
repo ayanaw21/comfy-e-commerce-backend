@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
-import User from "../models/user.model.ts";
-import type { IUser } from "../models/user.model.ts";
+import User from "../models/user.model.js";
+import type { IUser } from "../models/user.model.js";
 export const register = async (userData: IUser) => {
 	const email = userData.email;
 	const userExists = await User.exists({ email });

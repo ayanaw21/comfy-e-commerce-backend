@@ -1,10 +1,10 @@
 import type { Request, Response, NextFunction } from "express";
-import User from "../models/user.model.ts";
-import { ENV } from "../configs/env.ts";
+import User from "../models/user.model.js";
+import { ENV } from "../configs/env.js";
 import httpStatus from "http-status";
 
-import * as authService from "../services/auth.service.ts";
-import { generateTokens } from "../configs/utils.ts";
+import * as authService from "../services/auth.service.js";
+import { generateTokens } from "../configs/utils.js";
 export const register = async (req: Request, res: Response) => {
 	try {
 		const { email, password, username } = req.body;
@@ -50,7 +50,7 @@ export const register = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response) => {
 	try {
 		const { email, password } = req.body;
-		console.log(req.body)
+		console.log(req.body);
 
 		if (!email || !password) {
 			return res
@@ -79,26 +79,23 @@ export const login = async (req: Request, res: Response) => {
 	}
 };
 
-
-
 export const logout = async (req: Request, res: Response) => {
-    try {
-      
-        res.clearCookie("token", {
-            httpOnly: true,
-            secure: process.env.NODE_ENV !== "development",
-            sameSite: "strict",
-        });
+	try {
+		res.clearCookie("token", {
+			httpOnly: true,
+			secure: process.env.NODE_ENV !== "development",
+			sameSite: "strict",
+		});
 
-        // 2. Return success
-        return res.status(httpStatus.OK).json({
-            success: true,
-            message: "Logged out successfully",
-        });
-    } catch (error: any) {
-        console.error("Logout Error:", error.message);
-        return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-            message: "Error logging out",
-        });
-    }
+		// 2. Return success
+		return res.status(httpStatus.OK).json({
+			success: true,
+			message: "Logged out successfully",
+		});
+	} catch (error: any) {
+		console.error("Logout Error:", error.message);
+		return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
+			message: "Error logging out",
+		});
+	}
 };

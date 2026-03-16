@@ -1,8 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { ENV } from "../configs/env.ts";
-import type { IUser } from "../models/user.model.ts";
-import User from "../models/user.model.ts";
+import { ENV } from "../configs/env.js";
+import type { IUser } from "../models/user.model.js";
+import User from "../models/user.model.js";
 import httpStatus from "http-status";
 export interface AuthRequest extends Request {
 	user?: IUser;

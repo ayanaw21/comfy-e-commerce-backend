@@ -1,8 +1,8 @@
 import type { Response, Request } from "express";
-import * as productService from "../services/product.service.ts";
+import * as productService from "../services/product.service.js";
 
 import httpStatus from "http-status";
-import type { IProduct } from "../models/product.model.ts";
+import type { IProduct } from "../models/product.model.js";
 
 export const getAllProducts = async (req: Request, res: Response) => {
 	try {
