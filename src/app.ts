@@ -6,12 +6,13 @@ import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth.route.js";
 import orderRouter from "./routes/order.route.js";
 import productRouter from "./routes/product.route.js";
+import { ENV } from "./configs/env.js";
 const app: Application = express();
 
 app.use(helmet());
 app.use(
 	cors({
-		origin: "http://localhost:5173",
+		origin:ENV.CLIENT_URL,
 		credentials: true,
 	}),
 );
