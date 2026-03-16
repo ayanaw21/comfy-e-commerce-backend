@@ -26,7 +26,7 @@ export const register = async (req: Request, res: Response) => {
 				.json({ message: "Invalid email format" });
 		}
 		const user = await authService.register(req.body);
-		generateTokens(res, user._id.toString());
+		// generateTokens(res, user._id.toString());
 
 		return res.status(httpStatus.CREATED).json({
 			success: true,
